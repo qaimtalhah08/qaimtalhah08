@@ -1,6 +1,6 @@
 # Hi, I'm Talhah Qaim Khani
 
-### Senior AI Engineer | Agentic AI | Generative AI | Cloud & Data Platforms
+### AI Engineer | Agentic AI | Generative AI | Cloud & Data Platforms
 
 I design and deliver production-grade AI systems that transform business requirements into scalable, secure, and observable solutions. My expertise spans Generative AI, Agentic AI, Data Platforms, Cloud Architecture, and MLOps, with a strong focus on taking AI applications from proof-of-concept to enterprise deployment.
 
