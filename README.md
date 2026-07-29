@@ -1,108 +1,115 @@
 # Hi, I'm Talhah Qaim Khani
 
-### AI Engineer | Agentic AI | Generative AI | Cloud & Data Platforms
+### Senior AI Engineer — Production-Grade Agentic AI · RAG · LLM Systems
 
-I design and deliver production-grade AI systems that transform business requirements into scalable, secure, and observable solutions. My expertise spans Generative AI, Agentic AI, Data Platforms, Cloud Architecture, and MLOps, with a strong focus on taking AI applications from proof-of-concept to enterprise deployment.
+I build Agentic AI that **survives contact with the real world** not demos, not prototypes, but systems that run in regulated, high-stakes environments where reliability and governance genuinely matter.
 
----
-
-## What I Do
-
-* Build end-to-end AI and Machine Learning platforms
-* Design Agentic AI systems using LangGraph and MCP architectures
-* Develop RAG and Enterprise Search solutions
-* Build scalable data pipelines and AI ingestion frameworks
-* Design cloud-native AI architectures on Azure, AWS, and GCP
-* Implement AI governance, security, observability, and monitoring
-* Partner with stakeholders to translate business needs into AI solutions
+5+ years shipping Generative AI, Agentic AI, and RAG systems end-to-end from a vague stakeholder conversation to a live, monitored, enterprise-scale service on Kubernetes.
 
 ---
 
-## Core Expertise
+## What sets my systems apart
 
-### AI & Generative AI
+Most agentic projects work in a demo and break in production. I engineer for the failure modes everyone else ignores:
 
-* Large Language Models (LLMs)
-* Retrieval-Augmented Generation (RAG)
-* Agentic AI & Multi-Agent Systems
-* LangChain & LangGraph
-* Prompt Engineering & Guardrails
-* Model Evaluation & AI Governance
+### Modular Orchestration
+- Central **router** delegating to single-purpose agents (**hub-and-spoke** — agents can't call each other, so infinite delegation loops are *structurally impossible*)
+- **DAG-based planning** with cycle detection before execution
+- **Depth / step / cost / deadline counters** bounding every request
+- Parallel execution of independent branches for lower latency
 
-### Data & Engineering
+### Deterministic Guardrails — *AI proposes, deterministic engines dispose*
+- **Pydantic** schema validation on every tool input and output (`extra="forbid"` catches drift)
+- **OPA** policy gating — an LLM never triggers a privileged action without hard-coded constraints
+- **AST static analysis** on generated code (catches `eval`, nested loops / O(n²), unbounded loops before execution)
+- **Prompt-injection & PII-leakage** defenses with tenant/ACL filtering
 
-* Python
-* SQL
-* PySpark
-* ETL / ELT Pipelines
-* Data Engineering
-* Feature Engineering
+### Production Reliability
+- **Circuit breakers** (per-dependency, Redis-backed) to stop cascading failures
+- **Classified retry** — 5xx with exponential backoff + jitter, never 4xx
+- **Fallback chains** — secondary provider -> stale cache -> clean refusal
+- **Idempotency** (`SET NX EX`) and **atomic rate limiting** (Redis `INCR` + Lua)
+- **Per-request cost caps & quotas** to eliminate runaway loops
 
-### Cloud & Platform Engineering
+### Systematic Evaluation & Safe Rollout
+- **Golden datasets** + deterministic assertions gating every release in CI
+- **Meta-evaluated LLM-as-a-Judge** (rubric + reference-guided — a validated judge, not an automated vibe check)
+- **Fault injection** to prove breaker and fallback paths actually fire
+- **Canary / shadow deployments** with automatic rollback — regressions never reach production traffic
 
-* Microsoft Azure
-* Amazon Web Services (AWS)
-* Google Cloud Platform (GCP)
-* Docker
-* Kubernetes
-* MLflow
-* CI/CD Pipelines
+### Observability
+- **LangSmith** tracing, **OpenTelemetry**, **Prometheus**, **Grafana**
+- End-to-end `trace_id` propagation for full request lineage
 
-### Enterprise Architecture
+---
 
-* Model Context Protocol (MCP)
-* API Design & FastAPI
-* Azure AI Search
-* Vector Databases (FAISS, Azure AI Search)
-* Redis Caching & Session Management
-* Event-Driven Architectures
+## What I've shipped
 
-### Security & Observability
+**Patient-Facing Healthcare Booking & Support Platform**
+MCP tools layer (re-authorised per call), per-role PII masking, row-level locking to prevent double-booking, circuit breakers with stale-cache fallback, atomic rate limiting.
+-> **2,300+ users** · booking time **~10 min -> ~1 min** · latency **~15s -> ~2s**
 
-* JWT Authentication & RBAC
-* Azure Key Vault & Managed Identity
-* OpenTelemetry Distributed Tracing
-* Jaeger Observability
-* Monitoring & Performance Optimization
+**Agentic RAG Platform for UK Insurance Underwriters**
+Scaled to **8 event-driven microservices** on AKS, secured with Entra ID and full audit trails, with a **human in the loop** on every decision — detecting red-line breaches and recommending Refer / Query / Accept.
+
+**ML Demand-Forecasting & Analytics**
+Forecasting models and automated Power BI / ETL pipelines giving ops and sales teams self-serve, data-driven decision support.
+
+---
+
+## Tech Stack
+
+**Languages** · Python · SQL · TypeScript
+
+**GenAI & Agentic AI** · LLMs (GPT-4o, Claude, Gemini, Llama 3) · Multi-Agent Systems · LangGraph · LangChain · MCP · RAG (hybrid + vector + re-ranking) · Prompt Engineering · Fine-tuning (LoRA / QLoRA / PEFT)
+
+**Reliability & Guardrails** · Circuit Breakers · Retry / Fallback · Idempotency · Atomic Rate Limiting · OPA · Cost / Quota Governance · HITL Approvals
+
+**Evaluation & LLMOps** · Golden Datasets · LLM-as-a-Judge · Fault Injection · RAGAS · DeepEval · Canary / Shadow · LangSmith · MLflow
+
+**Vector & Retrieval** · FAISS · Azure AI Search · Pinecone · Qdrant · Weaviate · pgvector · hybrid search · re-ranking
+
+**Cloud & Platform** · Azure (AKS, Azure OpenAI, AI Search) · AWS · GCP · Docker · Kubernetes · Terraform · CI/CD · Redis · Kafka · FastAPI
+
+**Security & Observability** · OWASP LLM Top 10 · RBAC · JWT · Keycloak · Azure Key Vault · PII Masking · OpenTelemetry · Prometheus · Grafana · Jaeger
 
 ---
 
 ## Featured Projects
 
 ### Enterprise Agentic AI Assistant
-
-* Built an enterprise AI assistant using FastAPI, LangGraph, MCP, PostgreSQL, Redis, and Azure OpenAI
-* Implemented secure RBAC with JWT and Keycloak
-* Added OpenTelemetry and Jaeger for end-to-end observability
-* Developed tool orchestration for enterprise data access
+Secure agentic platform with JWT-based RBAC, AI-driven issue analysis, **DAG-based tool orchestration with cycle detection**, circuit breakers, and end-to-end observability.
+`FastAPI` · `LangGraph` · `MCP` · `PostgreSQL` · `Redis` · `Azure OpenAI` · `Keycloak` · `OpenTelemetry` · `Jaeger`
 
 ### Intelligent Document Intelligence Platform
-
-* Designed a RAG-based knowledge system using Azure OpenAI and Azure AI Search
-* Implemented document ingestion, chunking, embedding generation, indexing, and retrieval pipelines
-* Added hybrid search, reranking, and guardrails for production readiness
+RAG knowledge system — document ingestion, chunking, embedding, indexing, and retrieval with **hybrid search, re-ranking, and production guardrails**.
+`Azure OpenAI` · `Azure AI Search` · `hybrid RAG` · `re-ranking`
 
 ### Customer Support AI Platform
+AI-powered support workflows using LLMs, vector search, and agentic reasoning — automated issue analysis and next-action recommendations, cutting manual effort.
+`LLMs` · `vector search` · `agentic reasoning`
 
-* Developed AI-powered support workflows using LLMs, vector search, and agentic reasoning
-* Reduced manual effort through automated issue analysis and next-action recommendations
+---
+
+## Engineering Principles
+
+> **AI proposes, deterministic engines dispose.** An LLM never holds direct administrative privileges — every action passes through a deterministic gate.
+
+> **Defence in depth.** Never trust one probabilistic layer — a 95% guardrail is always backed by a 100% deterministic policy and IAM.
+
+> **Name the failure, then the fix.** Reliability isn't a tool list — it's knowing *how* things break and engineering the mechanism that stops it.
 
 ---
 
 ## Areas of Interest
 
-* Enterprise AI Architecture
-* Agentic AI Systems
-* Multi-Agent Workflows
-* AI Governance & Responsible AI
-* Cloud-Native AI Platforms
-* Production AI Delivery
-* Data & AI Platform Modernization
+Enterprise AI Architecture · Agentic & Multi-Agent Systems · AI Governance & Responsible AI · Cloud-Native AI Platforms · Production AI Delivery · Self-Evolving Systems
 
 ---
 
-## Connect With Me
+## Let's Connect
 
-LinkedIn:https://www.linkedin.com/in/talhah-qaim-khani-b30548172/
+Open to **Senior / Applied AI Engineer** roles where I can own systems end-to-end in regulated or high-stakes domains.
+Always happy to talk agentic AI, RAG architecture, or AI governance.
 
-Email: qaimtalhah@gmail.com
+qaimtalhah@gmail.com · London, UK · [LinkedIn](https://www.linkedin.com/)
